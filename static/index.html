@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Countdowner</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main id="app">
+      <section class="auth-view" id="authView">
+        <div class="brand-panel">
+          <p class="eyebrow">Countdowner</p>
+          <h1>Your goals, timed with kindness.</h1>
+          <p>Create countdown tiles, track progress, share accountability, and unlock rewards that actually feel personal.</p>
+        </div>
+        <form class="auth-form" id="accountForm">
+          <h2>Create or open account</h2>
+          <label>
+            Name
+            <input name="name" autocomplete="name" required placeholder="Komal" />
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+          </label>
+          <label>
+            Motivation style
+            <select name="motivation_style">
+              <option value="practical">Practical next step</option>
+              <option value="gentle">Gentle encouragement</option>
+              <option value="direct">Direct accountability</option>
+              <option value="competitive">Competitive challenge</option>
+              <option value="reflective">Reflective coaching</option>
+            </select>
+          </label>
+          <fieldset>
+            <legend>Preferred rewards</legend>
+            <label><input type="checkbox" name="reward_preferences" value="movie" checked /> Movie or series</label>
+            <label><input type="checkbox" name="reward_preferences" value="date" /> Date with partner</label>
+            <label><input type="checkbox" name="reward_preferences" value="shopping" /> Shopping spree</label>
+            <label><input type="checkbox" name="reward_preferences" value="purchase" /> Personal purchase</label>
+            <label><input type="checkbox" name="reward_preferences" value="trip" /> Trip or outing</label>
+          </fieldset>
+          <label>
+            Wishlist or dream rewards
+            <textarea name="wishlist" rows="3" placeholder="A watch, headphones, Goa weekend, pottery class..."></textarea>
+          </label>
+          <button type="submit">Enter app</button>
+        </form>
+      </section>
+
+      <section class="app-view hidden" id="appView">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Countdowner</p>
+            <h1 id="welcomeTitle">Goals</h1>
+          </div>
+          <button id="logoutBtn" class="ghost">Sign out</button>
+        </header>
+
+        <section class="dashboard">
+          <form class="goal-form" id="goalForm">
+            <h2>Add a goal tile</h2>
+            <div class="grid two">
+              <label>
+                Goal name
+                <input name="title" required placeholder="Run 30 km this month" />
+              </label>
+              <label>
+                Due date and time
+                <input name="due_at" type="datetime-local" required />
+              </label>
+            </div>
+            <div class="grid three">
+              <label>
+                Type
+                <select name="recurrence">
+                  <option value="one-time">One-time</option>
+                  <option value="daily">Daily</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="monthly">Monthly</option>
+                  <option value="bi-annually">Bi-annually</option>
+                  <option value="annually">Annually</option>
+                </select>
+              </label>
+              <label>
+                Area
+                <select name="category">
+                  <option value="fitness">Fitness</option>
+                  <option value="wellbeing">Wellbeing</option>
+                  <option value="learning">Learning</option>
+                  <option value="career">Career</option>
+                  <option value="finance">Finance</option>
+                  <option value="default">Personal</option>
+                </select>
+              </label>
+              <label>
+                Priority
+                <input name="priority" type="range" min="1" max="5" value="3" />
+              </label>
+            </div>
+            <label>
+              Notes
+              <textarea name="notes" rows="2" placeholder="What does success look like?"></textarea>
+            </label>
+            <label class="check-row">
+              <input type="checkbox" id="trackerEnabled" />
+              Add a tracker for this goal
+            </label>
+            <div class="tracker-fields hidden" id="trackerFields">
+              <label>
+                Metric
+                <input name="tracker_metric" placeholder="Calories, workouts, pages, rupees saved" />
+              </label>
+              <label>
+                Target
+                <input name="tracker_target" type="number" min="1" step="1" value="10" />
+              </label>
+              <label>
+                Unit
+                <input name="tracker_unit" placeholder="km, days, pages" />
+              </label>
+            </div>
+            <button type="submit">Create tile</button>
+          </form>
+
+          <aside class="side-panel">
+            <h2>Invites</h2>
+            <div id="inviteList" class="invite-list"></div>
+          </aside>
+        </section>
+
+        <section class="tile-section">
+          <div class="section-head">
+            <h2>Your countdown tiles</h2>
+            <p id="goalCount">0 active</p>
+          </div>
+          <div id="goalGrid" class="goal-grid"></div>
+        </section>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
